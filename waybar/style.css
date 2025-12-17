@@ -1,0 +1,132 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  font-weight: bold;
+  font-size: 11px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+  color: #cdd6f4;
+}
+
+tooltip {
+  background: #1e1e2e;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #11111b;
+}
+
+#workspaces {
+  background-color: #1e1e2e;
+  border-radius: 8px;
+  padding: 0px 5px;
+  margin: 2px 0 2px 4px;
+}
+
+#workspaces button {
+  padding: 4px 10px;
+  margin: 2px 3px;
+  color: #585b70;
+  background: transparent;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+#workspaces button.active {
+  color: #1e1e2e;
+  background: linear-gradient(135deg, #cba6f7 0%, #b490f5 100%);
+  font-weight: bold;
+}
+
+#workspaces button:hover {
+  background: #313244;
+  color: #cba6f7;
+}
+
+#custom-launcher {
+  font-size: 16px;
+  color: #89b4fa;
+  background-color: #1e1e2e;
+  border-radius: 8px;
+  padding: 3px 10px;
+  margin: 2px 4px;
+}
+
+#clock {
+  color: #fab387;
+  background-color: #1e1e2e;
+  border-radius: 8px;
+  padding: 3px 12px;
+  margin: 2px 4px;
+  font-weight: bold;
+}
+
+#network,
+#pulseaudio,
+#backlight,
+#custom-bluetooth,
+#custom-clipboard,
+#custom-notifications,
+#tray {
+  background-color: #1e1e2e;
+  border-radius: 8px;
+  padding: 3px 10px;
+  margin: 2px 1px;
+}
+
+#network {
+  color: #f9e2af;
+}
+
+#network.disconnected {
+  color: #f38ba8;
+}
+
+#pulseaudio {
+  color: #89b4fa;
+}
+
+#pulseaudio.muted {
+  color: #6c7086;
+}
+
+#backlight {
+  color: #f5c2e7;
+}
+
+#custom-clipboard {
+  color: #94e2d5;
+}
+
+#custom-bluetooth {
+  color: #89b4fa;
+}
+
+#custom-notifications {
+  color: #fab387;
+}
+
+#tray {
+  padding: 3px 8px;
+}
+
+#custom-power {
+  color: #f38ba8;
+  background-color: #1e1e2e;
+  border-radius: 8px;
+  padding: 3px 10px;
+  margin: 2px 4px 2px 1px;
+  font-size: 14px;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #1e1e2e;
+  }
+}

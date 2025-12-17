@@ -1,0 +1,107 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "margin-top": 1,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 0,
+
+  "modules-left": [
+    "custom/launcher",
+    "niri/workspaces"
+  ],
+
+  "modules-center": [
+    "clock"
+  ],
+
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "custom/clipboard",
+    "custom/bluetooth",
+    "custom/notifications",
+    "tray",
+    "custom/power"
+  ],
+
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "default": ""
+    }
+  },
+
+  "custom/launcher": {
+    "format": "",
+    "on-click": "fuzzel",
+    "tooltip": false
+  },
+
+  "tray": {
+    "spacing": 6
+  },
+
+  "network": {
+    "format-wifi": " {essid}",
+    "format-ethernet": "󰈀 Connected",
+    "format-disconnected": "󰤭 Disconnected",
+    "tooltip-format": "{essid} ({signalStrength}%)\n{ipaddr}",
+    "on-click": "alacritty -e nmtui",
+    "on-click-right": "nm-connection-editor"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "scroll-step": 5
+  },
+
+  "custom/bluetooth": {
+    "exec": "sh -c 'if ! command -v bluetoothctl >/dev/null; then printf \" N/A\"; exit; fi; if bluetoothctl show | grep -q \"Powered: yes\"; then if bluetoothctl info | grep -q \"Connected: yes\"; then bluetoothctl info | grep Name | head -n1 | cut -d\" \" -f2- | xargs -I{} printf \" %s\" \"{}\" ; else printf \" on\"; fi; else printf \" off\"; fi'",
+    "interval": 10,
+    "tooltip": false,
+    "on-click": "sh -c 'if bluetoothctl show | grep -q \"Powered: yes\"; then bluetoothctl power off; else bluetoothctl power on; fi'"
+  },  "custom/clipboard": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "sh -c 'if command -v cliphist >/dev/null 2>&1; then cliphist list | fuzzel --dmenu | cliphist decode | wl-copy; fi'",
+    "on-click-right": "sh -c 'if command -v cliphist >/dev/null 2>&1; then cliphist wipe; fi'"
+  },
+
+  "custom/notifications": {
+    "exec": "sh -c 'count=$(dunstctl count waiting 2>/dev/null || echo 0); if [ \"$count\" -gt 0 ]; then echo \" $count\"; else echo \"\"; fi'",
+    "return-type": "string",
+    "interval": 2,
+    "tooltip": false,
+    "on-click": "dunstctl history-pop",
+    "on-click-right": "dunstctl close-all"
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "format-alt": "{:%d/%m/%Y}"
+  },
+
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "qs -c noctalia-shell ipc call sessionMenu toggle",
+    "tooltip": false
+  }
+}
